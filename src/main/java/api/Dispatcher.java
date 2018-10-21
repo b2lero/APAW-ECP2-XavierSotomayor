@@ -1,5 +1,7 @@
 package api;
 
+import api.apiControllers.PublisherApiController;
+import api.dtos.PublisherDto;
 import api.exceptions.ArgumentNotValidException;
 import api.exceptions.NotFoundException;
 import api.exceptions.RequestInvalidException;
@@ -8,6 +10,8 @@ import http.HttpResponse;
 import http.HttpStatus;
 
 public class Dispatcher {
+
+    PublisherApiController publisherApiController = new PublisherApiController();
 
 
     public void submit(HttpRequest request, HttpResponse response) {
@@ -45,6 +49,14 @@ public class Dispatcher {
         }
     }
 
+    private void doPost(HttpRequest request, HttpResponse response) {
+        if (request.isEqualsPath(PublisherApiController.PUBLISHERS)){
+            response.setBody(this.publisherApiController.create((PublisherDto) request.getBody()));
+        } else{
+            throw new RequestInvalidException("method error: " + request.getMethod());
+        }
+    }
+
     private void doDelete(HttpRequest request) {
     }
 
@@ -55,9 +67,6 @@ public class Dispatcher {
     }
 
     private void doGet(HttpRequest request, HttpResponse response) {
-    }
-
-    private void doPost(HttpRequest request, HttpResponse response) {
     }
 
 
