@@ -25,4 +25,5 @@ public class DaoMemoryFactory extends DaoFactory {
         }
         return albumDao;
     }
+
 }
