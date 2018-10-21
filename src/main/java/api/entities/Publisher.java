@@ -5,7 +5,7 @@ public class Publisher{
     private String name;
     private String label;
 
-    private Album[] AlbumList;
+    private Album[] albumList;
 
     public Publisher(String id, String name) {
         this.id = id;
@@ -37,11 +37,11 @@ public class Publisher{
     }
 
     public Album[] getAlbumList() {
-        return AlbumList;
+        return albumList;
     }
 
     public void setAlbumList(Album[] albumList) {
-        AlbumList = albumList;
+        this.albumList = albumList;
     }
 
     @Override
