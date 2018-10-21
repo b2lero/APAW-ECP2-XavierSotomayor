@@ -10,7 +10,7 @@ public class Album{
 
     private Play[] playlist;
 
-    public Album(String id, String name) {
+    public Album(String name, LocalDateTime date) {
         this.id = id;
         this.name = name;
         this.date = LocalDateTime.now();

@@ -1,6 +1,8 @@
 package api;
 
+import api.apiControllers.AlbumApiController;
 import api.apiControllers.PublisherApiController;
+import api.dtos.AlbumDto;
 import api.dtos.PublisherDto;
 import api.exceptions.ArgumentNotValidException;
 import api.exceptions.NotFoundException;
@@ -12,6 +14,7 @@ import http.HttpStatus;
 public class Dispatcher {
 
     PublisherApiController publisherApiController = new PublisherApiController();
+    AlbumApiController albumApiController = new AlbumApiController();
 
 
     public void submit(HttpRequest request, HttpResponse response) {
@@ -52,10 +55,14 @@ public class Dispatcher {
     private void doPost(HttpRequest request, HttpResponse response) {
         if (request.isEqualsPath(PublisherApiController.PUBLISHERS)){
             response.setBody(this.publisherApiController.create((PublisherDto) request.getBody()));
-        } else{
+        } else  if(request.isEqualsPath(AlbumApiController.ALBUMS)){
+            response.setBody(this.albumApiController.create((AlbumDto) request.getBody()));
+        } else {
             throw new RequestInvalidException("method error: " + request.getMethod());
         }
     }
+
+
 
     private void doDelete(HttpRequest request) {
     }
