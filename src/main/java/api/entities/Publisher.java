@@ -5,43 +5,33 @@ public class Publisher{
     private String name;
     private String label;
 
-    private Album[] albumList;
-
-    public Publisher(String id, String name) {
-        this.id = id;
+    public Publisher(String name, String label) {
         this.name = name;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+        this.label = label;
     }
 
     public String getLabel() {
-        return label;
+        return this.label;
     }
 
     public void setLabel(String label) {
         this.label = label;
     }
 
-    public Album[] getAlbumList() {
-        return albumList;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public void setAlbumList(Album[] albumList) {
-        this.albumList = albumList;
+    public String getId() {
+        return this.id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return this.name;
     }
 
     @Override
