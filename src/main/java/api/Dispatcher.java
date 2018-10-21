@@ -1,6 +1,8 @@
 package api;
 
+import api.apiControllers.AlbumApiController;
 import api.apiControllers.PublisherApiController;
+import api.dtos.AlbumDto;
 import api.dtos.PublisherDto;
 import api.exceptions.ArgumentNotValidException;
 import api.exceptions.NotFoundException;
@@ -11,7 +13,8 @@ import http.HttpStatus;
 
 public class Dispatcher {
 
-    PublisherApiController publisherApiController = new PublisherApiController();
+    private PublisherApiController publisherApiController = new PublisherApiController();
+    private AlbumApiController albumApiController = new AlbumApiController();
 
 
     public void submit(HttpRequest request, HttpResponse response) {
@@ -20,18 +23,6 @@ public class Dispatcher {
             switch (request.getMethod()) {
                 case POST:
                     this.doPost(request, response);
-                    break;
-                case GET:
-                    this.doGet(request, response);
-                    break;
-                case PUT:
-                    this.doPut(request);
-                    break;
-                case PATCH:
-                    this.doPatch(request);
-                    break;
-                case DELETE:
-                    this.doDelete(request);
                     break;
                 default: // Unexpected
                     throw new RequestInvalidException("method error: " + request.getMethod());
@@ -52,21 +43,11 @@ public class Dispatcher {
     private void doPost(HttpRequest request, HttpResponse response) {
         if (request.isEqualsPath(PublisherApiController.PUBLISHERS)){
             response.setBody(this.publisherApiController.create((PublisherDto) request.getBody()));
-        } else{
+        } else  if(request.isEqualsPath(AlbumApiController.ALBUMS)){
+            response.setBody(this.albumApiController.create((AlbumDto) request.getBody()));
+        } else {
             throw new RequestInvalidException("method error: " + request.getMethod());
         }
-    }
-
-    private void doDelete(HttpRequest request) {
-    }
-
-    private void doPatch(HttpRequest request) {
-    }
-
-    private void doPut(HttpRequest request) {
-    }
-
-    private void doGet(HttpRequest request, HttpResponse response) {
     }
 
 
