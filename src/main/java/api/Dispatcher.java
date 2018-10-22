@@ -27,6 +27,9 @@ public class Dispatcher {
                 case POST:
                     this.doPost(request, response);
                     break;
+                case PUT:
+                    this.doPut(request, response);
+                    break;
                 default: // Unexpected
                     throw new RequestInvalidException("method error: " + request.getMethod());
             }
@@ -44,16 +47,23 @@ public class Dispatcher {
     }
 
     private void doPost(HttpRequest request, HttpResponse response) {
-        if (request.isEqualsPath(PublisherApiController.PUBLISHERS)){
+        if (request.isEqualsPath(PublisherApiController.PUBLISHERS)) {
             response.setBody(this.publisherApiController.create((PublisherDto) request.getBody()));
-        } else  if(request.isEqualsPath(AlbumApiController.ALBUMS)){
+        } else if (request.isEqualsPath(AlbumApiController.ALBUMS)) {
             response.setBody(this.albumApiController.create((AlbumDto) request.getBody()));
-        } else if(request.isEqualsPath(PlayApiController.PLAYS)){
+        } else if (request.isEqualsPath(PlayApiController.PLAYS)) {
             response.setBody((this.playApiController.create((PlayDto) request.getBody())));
-        }else {
+        } else {
             throw new RequestInvalidException("method error: " + request.getMethod());
         }
     }
 
+    private void doPut(HttpRequest request, HttpResponse response) {
+        if (request.isEqualsPath(PublisherApiController.PUBLISHERS + PublisherApiController.ID_ID)) {
+            this.publisherApiController.update(request.getPath(1), (PublisherDto) request.getBody());
+        } else {
+            throw new RequestInvalidException("method error: " + request.getMethod() + ' ' + request.getPath());
+        }
 
+    }
 }
