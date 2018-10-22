@@ -1,8 +1,10 @@
 package api;
 
 import api.apiControllers.AlbumApiController;
+import api.apiControllers.PlayApiController;
 import api.apiControllers.PublisherApiController;
 import api.dtos.AlbumDto;
+import api.dtos.PlayDto;
 import api.dtos.PublisherDto;
 import api.exceptions.ArgumentNotValidException;
 import api.exceptions.NotFoundException;
@@ -15,6 +17,7 @@ public class Dispatcher {
 
     private PublisherApiController publisherApiController = new PublisherApiController();
     private AlbumApiController albumApiController = new AlbumApiController();
+    private PlayApiController playApiController = new PlayApiController();
 
 
     public void submit(HttpRequest request, HttpResponse response) {
@@ -45,7 +48,9 @@ public class Dispatcher {
             response.setBody(this.publisherApiController.create((PublisherDto) request.getBody()));
         } else  if(request.isEqualsPath(AlbumApiController.ALBUMS)){
             response.setBody(this.albumApiController.create((AlbumDto) request.getBody()));
-        } else {
+        } else if(request.isEqualsPath(PlayApiController.PLAYS)){
+            response.setBody((this.playApiController.create((PlayDto) request.getBody())));
+        }else {
             throw new RequestInvalidException("method error: " + request.getMethod());
         }
     }

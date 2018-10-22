@@ -7,8 +7,10 @@ public class Play{
 
     private PlayInfo playinfo;
 
-    public Play(String id) {
-        this.id = id;
+    public Play(String namePlay, String author) {
+        this.id =id;
+        this.author = author;
+        this.namePlay = namePlay;
     }
 
     public String getId() {
