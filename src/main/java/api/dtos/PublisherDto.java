@@ -5,7 +5,6 @@ public class PublisherDto {
 
     private String name;
 
-
     public PublisherDto(String name) {
         this.name = name;
     }
