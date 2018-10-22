@@ -18,4 +18,6 @@ public abstract class DaoFactory {
 
     public abstract AlbumDao getAlbumDao();
 
+    public abstract PlayDao getPlayDao();
+
 }

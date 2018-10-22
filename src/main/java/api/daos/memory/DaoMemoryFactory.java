@@ -2,6 +2,7 @@ package api.daos.memory;
 
 import api.daos.AlbumDao;
 import api.daos.DaoFactory;
+import api.daos.PlayDao;
 import api.daos.PublisherDao;
 
 public class DaoMemoryFactory extends DaoFactory {
@@ -9,6 +10,8 @@ public class DaoMemoryFactory extends DaoFactory {
     private PublisherDao publisherDao;
 
     private AlbumDao albumDao;
+
+    private PlayDao playDao;
 
     @Override
     public PublisherDao getPublisherDao() {
@@ -26,4 +29,11 @@ public class DaoMemoryFactory extends DaoFactory {
         return albumDao;
     }
 
+    @Override
+    public PlayDao getPlayDao() {
+        if(playDao == null){
+            playDao = new PlayDaoMemory();
+        }
+        return playDao;
+    }
 }
