@@ -18,7 +18,6 @@ Este proyecto sobre la realizacion de un API-REST simulado para comprender las c
 # API
 ### POST /publishers
 #### Parámetros del cuerpo
-* `id`:String **required**
 * `name`:String  **required**
 
 #### response
@@ -27,7 +26,6 @@ Este proyecto sobre la realizacion de un API-REST simulado para comprender las c
 
 ### POST /albums
 #### Parámetros del cuerpo
-*  `id`:String **required**
 *  `name`:String **required**
 
 #### response
@@ -46,7 +44,6 @@ Este proyecto sobre la realizacion de un API-REST simulado para comprender las c
 
 ### PUT /publishers/{id}
 #### Parámetros del cuerpo
-* `id`String **required**
 * `name`:String **required**
 
 #### response
@@ -57,7 +54,6 @@ Este proyecto sobre la realizacion de un API-REST simulado para comprender las c
 
 ### GET /plays
 #### Parámetros del cuerpo
-* `id`: String  
 * `namePlay`: String
 
 #### response
@@ -67,7 +63,7 @@ Este proyecto sobre la realizacion de un API-REST simulado para comprender las c
 
 ### PUT /albums/{id}/plays
 #### Parámetros del cuerpo
-* `id`:String **required**
+* `name`:String **required**
 * author:String
 
 #### response
