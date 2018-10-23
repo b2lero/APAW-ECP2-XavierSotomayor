@@ -29,14 +29,14 @@ public abstract class GenericDaoMemory<T> implements GenericDao<T, String> {
 
     @Override
     public Optional<T> read(String s) {
-        T entity = map.get(id);
-        LogManager.getLogger(this.getClass()).debug("   read(" + id + "): " + entity);
+        T entity = map.get(s);
+        LogManager.getLogger(this.getClass()).debug("   read(" + s + "): " + entity);
         return (entity == null) ? Optional.empty() : Optional.of(entity);
     }
 
     @Override
     public void deleteById(String s) {
-        LogManager.getLogger(this.getClass()).debug("   deleteById(" + id + "): " + map.remove(id));
+        LogManager.getLogger(this.getClass()).debug("   deleteById(" + s + "): " + map.remove(s));
     }
 
     @Override
