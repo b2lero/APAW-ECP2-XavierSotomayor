@@ -2,7 +2,11 @@ package api.apiControllers;
 
 import api.businessController.PlayBusinessController;
 import api.dtos.PlayDto;
+import api.dtos.PlaylistDto;
+import api.entities.Play;
 import api.exceptions.ArgumentNotValidException;
+
+import java.util.List;
 
 public class PlayApiController {
 
@@ -21,6 +25,10 @@ public class PlayApiController {
         if (property == null) {
             throw new ArgumentNotValidException(message + " is NULL");
         }
+    }
+
+    public List<PlaylistDto> readAll(){
+        return playBusinessController.readAll();
     }
 
 }
