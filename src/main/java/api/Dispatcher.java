@@ -32,6 +32,7 @@ public class Dispatcher {
                     break;
                 case GET:
                     this.doGet(request, response);
+                    break;
                 default: // Unexpected
                     throw new RequestInvalidException("method error: " + request.getMethod());
             }
@@ -71,7 +72,10 @@ public class Dispatcher {
 
     private void doGet(HttpRequest request, HttpResponse response) {
         if (request.isEqualsPath(PlayApiController.PLAYS)){
-            response.setBody(this.playApiController);
+            response.setBody(this.playApiController.readAll());
+        } else{
+            throw new RequestInvalidException("method error: " + request.getMethod() + ' ' + request.getPath());
+
         }
     }
 }
