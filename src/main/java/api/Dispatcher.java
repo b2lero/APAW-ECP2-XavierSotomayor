@@ -6,12 +6,16 @@ import api.apiControllers.PublisherApiController;
 import api.dtos.AlbumDto;
 import api.dtos.PlayDto;
 import api.dtos.PublisherDto;
+import api.entities.Play;
 import api.exceptions.ArgumentNotValidException;
 import api.exceptions.NotFoundException;
 import api.exceptions.RequestInvalidException;
 import http.HttpRequest;
 import http.HttpResponse;
 import http.HttpStatus;
+
+import java.nio.file.Path;
+import java.util.List;
 
 public class Dispatcher {
 
@@ -32,6 +36,9 @@ public class Dispatcher {
                     break;
                 case GET:
                     this.doGet(request, response);
+                    break;
+                case PATCH:
+                    this.doPatch(request,response);
                     break;
                 default: // Unexpected
                     throw new RequestInvalidException("method error: " + request.getMethod());
@@ -64,10 +71,15 @@ public class Dispatcher {
     private void doPut(HttpRequest request, HttpResponse response) {
         if (request.isEqualsPath(PublisherApiController.PUBLISHERS + PublisherApiController.ID_ID)) {
             this.publisherApiController.update(request.getPath(1), (PublisherDto) request.getBody());
-        } else {
+        }  else {
             throw new RequestInvalidException("method error: " + request.getMethod() + ' ' + request.getPath());
         }
+    }
 
+    private void doPatch(HttpRequest request, HttpResponse response){
+        if (request.isEqualsPath(AlbumApiController.ALBUMS + AlbumApiController.ID_ID +AlbumApiController.PLAYS)){
+            this.albumApiController.updatePlay((request.getPath(1)), (List<Play>) request.getBody());
+        }
     }
 
     private void doGet(HttpRequest request, HttpResponse response) {
