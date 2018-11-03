@@ -20,12 +20,17 @@ public class PlayApiController {
         this.validate(playDto, "playDto");
         this.validate(playDto.getNameplay(), "playDto namePlay");
         this.validate(playDto.getAuthor(), "playDto author");
+        this.validate(playDto.getPlayinfo(), "playDto playinfo");
         return this.playBusinessController.create(playDto);
+    }
+
+    public void delete(String id) {
+        this.playBusinessController.delete(id);
     }
 
     private void validate(Object property, String message) {
         if (property == null) {
-            throw new ArgumentNotValidException(message + " is NULL");
+            throw new ArgumentNotValidException(message + " is missing");
         }
     }
 

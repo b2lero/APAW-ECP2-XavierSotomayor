@@ -40,6 +40,9 @@ public class Dispatcher {
                 case PATCH:
                     this.doPatch(request,response);
                     break;
+                case DELETE:
+                    this.doDelete(request, response);
+                    break;
                 default: // Unexpected
                     throw new RequestInvalidException("method error: " + request.getMethod());
             }
@@ -78,7 +81,7 @@ public class Dispatcher {
 
     private void doPatch(HttpRequest request, HttpResponse response){
         if (request.isEqualsPath(AlbumApiController.ALBUMS + AlbumApiController.ID_ID +AlbumApiController.PLAYS)){
-            this.albumApiController.updatePlay((request.getPath(1)), (List<Play>) request.getBody());
+            this.albumApiController.updatePlay(request.getPath(1), (List<Play>) request.getBody());
         }
     }
 
@@ -88,6 +91,12 @@ public class Dispatcher {
         } else{
             throw new RequestInvalidException("method error: " + request.getMethod() + ' ' + request.getPath());
 
+        }
+    }
+
+    private void doDelete(HttpRequest request, HttpResponse response) {
+        if (request.isEqualsPath(PlayApiController.PLAYS + PlayApiController.ID_ID)){
+            this.playApiController.delete(request.getPath(1));
         }
     }
 }

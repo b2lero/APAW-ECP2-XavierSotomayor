@@ -8,7 +8,7 @@ import api.exceptions.NotFoundException;
 public class PublisherBusinessController {
 
     public String create(PublisherDto publisherDto){
-        Publisher publisher = new Publisher(publisherDto.getName(),null);
+        Publisher publisher = new Publisher(publisherDto.getName(),publisherDto.getLabel(),null);
         DaoFactory.getFactory().getPublisherDao().save(publisher);
         return publisher.getId();
     }

@@ -2,6 +2,7 @@ package api.dtos;
 
 import api.entities.Play;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class AlbumDto {
@@ -33,5 +34,13 @@ public class AlbumDto {
 
     public void setPlays(List<Play> playlist) {
         this.playslist = playlist;
+    }
+
+    @Override
+    public String toString() {
+        return "AlbumDto{" +
+                "name='" + name + '\'' +
+                ", playslist=" + playslist +
+                '}';
     }
 }
