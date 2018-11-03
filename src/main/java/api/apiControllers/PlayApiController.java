@@ -12,7 +12,7 @@ public class PlayApiController {
 
     public static final String PLAYS = "/plays";
 
-    public static final String ID_ID = "{id}";
+    public static final String ID_ID = "/{id}";
 
     private PlayBusinessController playBusinessController = new PlayBusinessController();
 
@@ -24,9 +24,9 @@ public class PlayApiController {
         return this.playBusinessController.create(playDto);
     }
 
-//    public void delete(String id) {
-//        this.playBusinessController.delete(id);
-//    }
+    public void delete(String id) {
+        this.playBusinessController.delete(id);
+    }
 
     private void validate(Object property, String message) {
         if (property == null) {

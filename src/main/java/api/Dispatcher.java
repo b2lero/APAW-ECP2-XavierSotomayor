@@ -40,9 +40,9 @@ public class Dispatcher {
                 case PATCH:
                     this.doPatch(request);
                     break;
-//                case DELETE:
-//                    this.doDelete(request, response);
-//                    break;
+                case DELETE:
+                    this.doDelete(request, response);
+                    break;
                 default: // Unexpected
                     throw new RequestInvalidException("method error: " + request.getMethod());
             }
@@ -94,9 +94,9 @@ public class Dispatcher {
         }
     }
 
-//    private void doDelete(HttpRequest request, HttpResponse response) {
-//        if (request.isEqualsPath(PlayApiController.PLAYS + PlayApiController.ID_ID)){
-//            this.playApiController.delete(request.getPath(1));
-//        }
-//    }
+    private void doDelete(HttpRequest request, HttpResponse response) {
+        if (request.isEqualsPath(PlayApiController.PLAYS + PlayApiController.ID_ID)){
+            this.playApiController.delete(request.getPath(1));
+        }
+    }
 }

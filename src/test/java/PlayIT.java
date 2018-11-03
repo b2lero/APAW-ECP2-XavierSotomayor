@@ -65,12 +65,12 @@ public class PlayIT {
         assertTrue(playlist.size()>=5);
     }
 
-//    @Test
-//    void testDelete() {
-//        String id = this.createPlay("one play", "one author", PlayInfo.ROCK);
-//        HttpRequest request = HttpRequest.builder().path(PlayApiController.PLAYS).path(PlayApiController.ID_ID)
-//                .expandPath(id).delete();
-//        new Client().submit(request);
-//    }
+    @Test
+    void testDelete() {
+        String id = this.createPlay("one play", "one author", PlayInfo.ROCK);
+        HttpRequest request = HttpRequest.builder().path(PlayApiController.PLAYS).path(PlayApiController.ID_ID)
+                .expandPath(id).delete();
+        new Client().submit(request);
+    }
 
 }
