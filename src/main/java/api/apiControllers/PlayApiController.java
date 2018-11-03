@@ -12,7 +12,7 @@ public class PlayApiController {
 
     public static final String PLAYS = "/plays";
 
-    public static final String ID_ID = "{id}";
+    public static final String ID_ID = "/{id}";
 
     private PlayBusinessController playBusinessController = new PlayBusinessController();
 
