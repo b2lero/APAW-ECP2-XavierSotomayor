@@ -22,57 +22,58 @@ public class PublisherIT {
     }
 
     @Test
-    void testCreateUser() {
-        this.createPublisher();
+    void testCreatePublisher() {
+        this.createPublisher("publisher 1","label 1");
     }
 
-    private String createPublisher() {
-        HttpRequest request = HttpRequest.builder(PublisherApiController.PUBLISHERS).body(new PublisherDto("publisher")).post();
-        return (String) new Client().submit(request).getBody();
+    private String createPublisher(String name, String label) {
+        HttpRequest request = HttpRequest.builder().path(PublisherApiController.PUBLISHERS)
+                .body(new PublisherDto(name, label)).post();
+         return  (String) new Client().submit(request).getBody();
     }
 
     @Test
     void testPublisherInvalidRequest() {
-        HttpRequest request = HttpRequest.builder(PublisherApiController.PUBLISHERS + "/invalid").body(null).post();
+        HttpRequest request = HttpRequest.builder().path(PublisherApiController.PUBLISHERS + "/invalid").body(null).post();
         HttpException exception = assertThrows(HttpException.class, () -> new Client().submit(request));
         assertEquals(HttpStatus.BAD_REQUEST, exception.getHttpStatus());
     }
 
     @Test
     void testCreatePublisherWithoutPublisherDto() {
-        HttpRequest request = HttpRequest.builder(PublisherApiController.PUBLISHERS).body(null).post();
+        HttpRequest request = HttpRequest.builder().path(PublisherApiController.PUBLISHERS).body(null).post();
         HttpException exception = assertThrows(HttpException.class, () -> new Client().submit(request));
         assertEquals(HttpStatus.BAD_REQUEST, exception.getHttpStatus());
     }
 
     @Test
     void testCreatePublisherWithoutPublisherDtoName() {
-        HttpRequest request = HttpRequest.builder(PublisherApiController.PUBLISHERS).body(new PublisherDto(null)).post();
+        HttpRequest request = HttpRequest.builder().path(PublisherApiController.PUBLISHERS).body(new PublisherDto(null, "un label")).post();
         HttpException exception = assertThrows(HttpException.class, () -> new Client().submit(request));
         assertEquals(HttpStatus.BAD_REQUEST, exception.getHttpStatus());
     }
 
     @Test
-    void testUpdatePublisher(){
-        String id = this.createPublisher();
+    void testUpdateNamePublisher(){
+        String id = this.createPublisher("un publisher", "un label");
         LogManager.getLogger().info("publisherid: "+ id);
-        HttpRequest request = HttpRequest.builder(PublisherApiController.PUBLISHERS).path(PublisherApiController.ID_ID)
-                .expandPath(id).body(new PublisherDto("publisherTwo")).put();
+        HttpRequest request = HttpRequest.builder().path(PublisherApiController.PUBLISHERS).path(PublisherApiController.ID_ID)
+                .expandPath(id).body(new PublisherDto("un publisher n2", "un label")).put();
         new Client().submit(request);
     }
 
     @Test
     void testUpdatePublisherWithoutPublisherDto() {
-        String id = this.createPublisher();
-        HttpRequest request = HttpRequest.builder(PublisherApiController.PUBLISHERS).path(PublisherApiController.ID_ID)
+        String id = this.createPublisher("un publisher", "un label");
+        HttpRequest request = HttpRequest.builder().path(PublisherApiController.PUBLISHERS).path(PublisherApiController.ID_ID)
                 .expandPath(id).body(null).put();
         HttpException exception = assertThrows(HttpException.class, () -> new Client().submit(request));
         assertEquals(HttpStatus.BAD_REQUEST, exception.getHttpStatus());
     }
     @Test
     void testUpdatePublisherWithoutPublisherName() {
-        HttpRequest request = HttpRequest.builder(PublisherApiController.PUBLISHERS).path(PublisherApiController.ID_ID)
-                .expandPath("invalid-id").body(new PublisherDto(null)).put();
+        HttpRequest request = HttpRequest.builder().path(PublisherApiController.PUBLISHERS).path(PublisherApiController.ID_ID)
+                .expandPath("invalid-id").body(new PublisherDto(null, null)).put();
         HttpException exception = assertThrows(HttpException.class, () -> new Client().submit(request));
         assertEquals(HttpStatus.BAD_REQUEST, exception.getHttpStatus());
     }

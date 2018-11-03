@@ -1,22 +1,19 @@
 package api.dtos;
 
+import api.entities.PlayInfo;
+
 public class PlayDto {
 
     private String nameplay;
 
     private String author;
 
-    public PlayDto(String nameplay, String author) {
+    private PlayInfo playinfo;
+
+    public PlayDto(String nameplay, String author, PlayInfo playinfo) {
         this.nameplay = nameplay;
         this.author = author;
-    }
-
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
+        this.playinfo = playinfo;
     }
 
     public String getNameplay() {
@@ -27,5 +24,28 @@ public class PlayDto {
         this.nameplay = nameplay;
     }
 
+    public String getAuthor() {
+        return author;
+    }
 
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public PlayInfo getPlayinfo() {
+        return playinfo;
+    }
+
+    public void setPlayinfo(PlayInfo playinfo) {
+        this.playinfo = playinfo;
+    }
+
+    @Override
+    public String toString() {
+        return "PlayDto{" +
+                "nameplay='" + nameplay + '\'' +
+                ", author='" + author + '\'' +
+                ", playinfo=" + playinfo +
+                '}';
+    }
 }

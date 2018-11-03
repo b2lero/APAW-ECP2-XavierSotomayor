@@ -1,16 +1,17 @@
 package api.entities;
 
 public class Play{
+
     private String id;
     private String namePlay ;
     private String author;
-
     private PlayInfo playinfo;
 
-    public Play(String namePlay, String author) {
+    public Play(String namePlay, String author, PlayInfo playinfo) {
         this.id =id;
         this.author = author;
         this.namePlay = namePlay;
+        this.playinfo = playinfo;
     }
 
     public String getId() {
@@ -43,5 +44,15 @@ public class Play{
 
     public void setPlayinfo(PlayInfo playinfo) {
         this.playinfo = playinfo;
+    }
+
+    @Override
+    public String toString() {
+        return "Play{" +
+                "id='" + id + '\'' +
+                ", namePlay='" + namePlay + '\'' +
+                ", author='" + author + '\'' +
+                ", playinfo=" + playinfo +
+                '}';
     }
 }

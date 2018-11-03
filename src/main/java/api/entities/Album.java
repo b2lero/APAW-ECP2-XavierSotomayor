@@ -1,6 +1,7 @@
 package api.entities;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
 
@@ -36,20 +37,20 @@ public class Album{
         this.name = name;
     }
 
-    public List<Play> getPlaylist() {
-        return playlist;
-    }
-
-    public void setPlaylist(List<Play> playlist) {
-        this.playlist = playlist;
-    }
-
     public LocalDateTime getDate() {
         return date;
     }
 
     public void setDate(LocalDateTime date) {
         this.date = date;
+    }
+
+    public List<Play> getPlaylist() {
+        return playlist;
+    }
+
+    public void setPlaylist(List<Play> playlist) {
+        this.playlist = playlist;
     }
 
     @Override

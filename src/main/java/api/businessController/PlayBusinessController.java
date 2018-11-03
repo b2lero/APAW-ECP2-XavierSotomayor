@@ -11,10 +11,14 @@ import java.util.List;
 public class PlayBusinessController {
 
     public String create(PlayDto playDto){
-        Play play = new Play(playDto.getNameplay(), playDto.getAuthor());
+        Play play = new Play(playDto.getNameplay(), playDto.getAuthor(), playDto.getPlayinfo());
         DaoFactory.getFactory().getPlayDao().save(play);
         return play.getId();
     }
+
+//    public void delete(String id){
+//        DaoFactory.getFactory().getPlayDao().deleteById(id);
+//    }
 
     public List<PlaylistDto> readAll(){
         List<Play> playlist = DaoFactory.getFactory().getPlayDao().findAll();

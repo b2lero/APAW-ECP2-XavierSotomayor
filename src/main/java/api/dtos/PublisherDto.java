@@ -1,13 +1,19 @@
 package api.dtos;
 
+import java.util.List;
+
 public class PublisherDto {
 
 
     private String name;
 
-    public PublisherDto(String name) {
+    private String label;
+
+    public PublisherDto(String name, String label) {
         this.name = name;
+        this.label = label;
     }
+
 
     public String getName() {
         return name;
@@ -17,10 +23,20 @@ public class PublisherDto {
         this.name = name;
     }
 
+    public String getLabel() {
+        return label;
+    }
+
+    public void setLabel(String label) {
+        this.label = label;
+    }
+
     @Override
     public String toString() {
         return "PublisherDto{" +
                 "name='" + name + '\'' +
+                ", label='" + label + '\'' +
                 '}';
     }
+
 }

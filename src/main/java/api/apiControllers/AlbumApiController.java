@@ -23,10 +23,12 @@ public class AlbumApiController {
         return this.albumBusinessController.create(albumDto);
     }
 
-    public void updatePlay(String albumId, List<Play> play){
+    public void updatePlay(String albumId, List<Play> playList){
         this.validate(albumId, "albumdto id");
-        this.albumBusinessController.updatePlay(albumId, play);
+        this.validate(playList, "playlist");
+        this.albumBusinessController.updatePlay(albumId, playList);
     }
+
 
     private void validate(Object property, String message) {
         if (property == null) {
