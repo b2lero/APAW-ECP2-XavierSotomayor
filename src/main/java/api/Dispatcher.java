@@ -38,7 +38,7 @@ public class Dispatcher {
                     this.doGet(request, response);
                     break;
                 case PATCH:
-                    this.doPatch(request,response);
+                    this.doPatch(request);
                     break;
                 case DELETE:
                     this.doDelete(request, response);
@@ -79,8 +79,8 @@ public class Dispatcher {
         }
     }
 
-    private void doPatch(HttpRequest request, HttpResponse response){
-        if (request.isEqualsPath(AlbumApiController.ALBUMS + AlbumApiController.ID_ID +AlbumApiController.PLAYS)){
+    private void doPatch(HttpRequest request){
+        if (request.isEqualsPath(AlbumApiController.ALBUMS + AlbumApiController.ID_ID + AlbumApiController.PLAYS)){
             this.albumApiController.updatePlay(request.getPath(1), (List<Play>) request.getBody());
         }
     }

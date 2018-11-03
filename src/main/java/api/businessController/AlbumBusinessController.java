@@ -17,10 +17,10 @@ public class AlbumBusinessController {
         return album.getId();
     }
 
-    public void updatePlay(String albumId, List<Play> play){
+    public void updatePlay(String albumId, List<Play> playList){
         Album album = DaoFactory.getFactory().getAlbumDao().read(albumId)
                 .orElseThrow(()-> new NotFoundException("Album id: " + albumId));
-        album.setPlaylist(play);
+        album.setPlaylist(playList);
         DaoFactory.getFactory().getAlbumDao().save(album);
     }
 

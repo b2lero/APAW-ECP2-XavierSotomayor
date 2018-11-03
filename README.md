@@ -55,14 +55,13 @@ Este proyecto sobre la realizacion de un API-REST simulado para comprender las c
 
 ### GET /plays
 #### Parámetros del cuerpo
-* `namePlay`: String **required**
 
 #### response
 * 200: OK  body: id:string, namePlay:String 
 * 404: NOT_FOUND
 
 
-### PATCH /albums/{id}/plays
+### PATH /albums/{id}/plays
 #### Parámetros del cuerpo
 * `namePlayid`:String **required**
 * author:String
