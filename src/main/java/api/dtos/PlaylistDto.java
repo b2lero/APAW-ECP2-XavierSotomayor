@@ -30,4 +30,11 @@ public class PlaylistDto {
         this.namePlay = namePlay;
     }
 
+    @Override
+    public String toString() {
+        return "PlaylistDto{" +
+                "id='" + id + '\'' +
+                ", namePlay='" + namePlay + '\'' +
+                '}';
+    }
 }

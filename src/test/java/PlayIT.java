@@ -2,6 +2,7 @@ import api.apiControllers.PlayApiController;
 import api.daos.DaoFactory;
 import api.daos.memory.DaoMemoryFactory;
 import api.dtos.PlayDto;
+import api.dtos.PlaylistDto;
 import api.entities.PlayInfo;
 import http.Client;
 import http.HttpException;
@@ -41,7 +42,7 @@ public class PlayIT {
     }
 
     @Test
-    void testCreatePlayWithoutNoPlayInfo(){
+    void testCreatePlayWithoutPlayInfo(){
         HttpRequest request = HttpRequest.builder().path(PlayApiController.PLAYS).body(new PlayDto("one song", "one author", null)).post();
         HttpException exception = assertThrows(HttpException.class, () -> new Client().submit(request));
         assertEquals(HttpStatus.BAD_REQUEST, exception.getHttpStatus());
@@ -53,16 +54,16 @@ public class PlayIT {
         HttpException exception = assertThrows(HttpException.class, () -> new Client().submit(request));
         assertEquals(HttpStatus.BAD_REQUEST, exception.getHttpStatus());
     }
-//
-//    @Test
-//    void testReadAll(){
-//        for (int i = 0; i < 5;i++){
-//            this.createPlay("playName"+i);
-//        }
-//        HttpRequest request = HttpRequest.builder(PlayApiController.PLAYS).get();
-//        List<PlaylistDto> playlist = (List<PlaylistDto>) new Client().submit(request).getBody();
-//        assertTrue(playlist.size()>=5);
-//    }
+
+    @Test
+    void testReadAll(){
+        for (int i = 0; i < 5;i++){
+            this.createPlay("playName-"+i, "author-"+1, PlayInfo.ROCK);
+        }
+        HttpRequest request = HttpRequest.builder().path(PlayApiController.PLAYS).get();
+        List<PlaylistDto> playlist = (List<PlaylistDto>) new Client().submit(request).getBody();
+        assertTrue(playlist.size()>=5);
+    }
 //
 //    @Test
 //    void testDelete() {

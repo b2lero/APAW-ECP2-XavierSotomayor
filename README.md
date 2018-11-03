@@ -55,7 +55,7 @@ Este proyecto sobre la realizacion de un API-REST simulado para comprender las c
 
 ### GET /plays
 #### Parámetros del cuerpo
-* `namePlay`: String
+* `namePlay`: String **required**
 
 #### response
 * 200: OK  body: id:string, namePlay:String 
