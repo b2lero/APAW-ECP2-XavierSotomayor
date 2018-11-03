@@ -18,8 +18,9 @@ public class Publisher{
         this.id = id;
     }
 
-    public void setName(String name) {
+    public Publisher setName(String name) {
         this.name = name;
+        return this;
     }
 
     public void setLabel(String label) {

@@ -14,7 +14,8 @@ public class PublisherBusinessController {
     }
 
     public void updateName(String id, PublisherDto publisherDto){
-        Publisher publisher = DaoFactory.getFactory().getPublisherDao().read(id).orElseThrow(() -> new NotFoundException("Publisher id: " + id));
+        Publisher publisher = DaoFactory.getFactory().getPublisherDao().read(id)
+                .orElseThrow(() -> new NotFoundException("Publisher id: " + id + "not found"));
         publisher.setName(publisherDto.getName());
         DaoFactory.getFactory().getPublisherDao().save(publisher);
     }

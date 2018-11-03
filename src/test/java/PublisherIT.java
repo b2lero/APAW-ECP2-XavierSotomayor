@@ -54,17 +54,17 @@ public class PublisherIT {
     }
 
     @Test
-    void testUpdatePublisher(){
-        String id = this.createPublisher("un publisher viejo", "un label");
+    void testUpdateNamePublisher(){
+        String id = this.createPublisher("un publisher", "un label");
         LogManager.getLogger().info("publisherid: "+ id);
         HttpRequest request = HttpRequest.builder().path(PublisherApiController.PUBLISHERS).path(PublisherApiController.ID_ID)
-                .expandPath(id).body(new PublisherDto("un publisher nuevo", null)).put();
+                .expandPath(id).body(new PublisherDto("un publisher n2", "un label")).put();
         new Client().submit(request);
     }
 
     @Test
     void testUpdatePublisherWithoutPublisherDto() {
-        String id = this.createPublisher("un publisher", "label premium");
+        String id = this.createPublisher("un publisher", "un label");
         HttpRequest request = HttpRequest.builder().path(PublisherApiController.PUBLISHERS).path(PublisherApiController.ID_ID)
                 .expandPath(id).body(null).put();
         HttpException exception = assertThrows(HttpException.class, () -> new Client().submit(request));
