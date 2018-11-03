@@ -16,9 +16,9 @@ public class PlayBusinessController {
         return play.getId();
     }
 
-    public void delete(String id){
-        DaoFactory.getFactory().getPlayDao().deleteById(id);
-    }
+//    public void delete(String id){
+//        DaoFactory.getFactory().getPlayDao().deleteById(id);
+//    }
 
     public List<PlaylistDto> readAll(){
         List<Play> playlist = DaoFactory.getFactory().getPlayDao().findAll();

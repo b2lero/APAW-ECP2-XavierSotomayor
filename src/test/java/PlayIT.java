@@ -64,20 +64,13 @@ public class PlayIT {
         List<PlaylistDto> playlist = (List<PlaylistDto>) new Client().submit(request).getBody();
         assertTrue(playlist.size()>=5);
     }
-//
+
 //    @Test
 //    void testDelete() {
-//        String nameid = this.createPlay("uno");
-//        HttpRequest request1 = HttpRequest.builder(PlayApiController.PLAYS).get();
-//        new Client().submit(request1);
-//
-//        HttpRequest request2 = HttpRequest.builder(PlayApiController.PLAYS).path(PlayApiController.ID_ID)
-//                .expandPath(nameid).delete();
-//        new Client().submit(request2);
-//        HttpException exception = assertThrows(HttpException.class, () -> new Client().submit(request1));
-//        assertEquals(HttpStatus.NOT_FOUND, exception.getHttpStatus());
+//        String id = this.createPlay("one play", "one author", PlayInfo.ROCK);
+//        HttpRequest request = HttpRequest.builder().path(PlayApiController.PLAYS).path(PlayApiController.ID_ID)
+//                .expandPath(id).delete();
+//        new Client().submit(request);
 //    }
-
-
 
 }
