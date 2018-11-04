@@ -1,4 +1,4 @@
-import api.apiControllers.PlayApiController;
+import api.apicontrollers.PlayApiController;
 import api.daos.DaoFactory;
 import api.daos.memory.DaoMemoryFactory;
 import api.dtos.PlayDto;

@@ -1,8 +1,6 @@
 package api.entities;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Arrays;
 import java.util.List;
 
 public class Album{

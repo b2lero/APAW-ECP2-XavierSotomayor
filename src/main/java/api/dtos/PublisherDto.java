@@ -1,7 +1,5 @@
 package api.dtos;
 
-import java.util.List;
-
 public class PublisherDto {
 
 

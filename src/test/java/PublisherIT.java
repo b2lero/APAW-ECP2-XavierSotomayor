@@ -1,8 +1,7 @@
-import api.apiControllers.PublisherApiController;
+import api.apicontrollers.PublisherApiController;
 import api.daos.DaoFactory;
 import api.daos.memory.DaoMemoryFactory;
 import api.dtos.PublisherDto;
-import api.entities.Publisher;
 import http.Client;
 import http.HttpException;
 import http.HttpRequest;

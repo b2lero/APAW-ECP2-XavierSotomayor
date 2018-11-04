@@ -1,8 +1,8 @@
 package api;
 
-import api.apiControllers.AlbumApiController;
-import api.apiControllers.PlayApiController;
-import api.apiControllers.PublisherApiController;
+import api.apicontrollers.AlbumApiController;
+import api.apicontrollers.PlayApiController;
+import api.apicontrollers.PublisherApiController;
 import api.dtos.AlbumDto;
 import api.dtos.PlayDto;
 import api.dtos.PublisherDto;
@@ -14,10 +14,11 @@ import http.HttpRequest;
 import http.HttpResponse;
 import http.HttpStatus;
 
-import java.nio.file.Path;
 import java.util.List;
 
 public class Dispatcher {
+
+    private static final String METHOD_ERROR_MSG = "method error: ";
 
     private PublisherApiController publisherApiController = new PublisherApiController();
     private AlbumApiController albumApiController = new AlbumApiController();
@@ -32,7 +33,7 @@ public class Dispatcher {
                     this.doPost(request, response);
                     break;
                 case PUT:
-                    this.doPut(request, response);
+                    this.doPut(request);
                     break;
                 case GET:
                     this.doGet(request, response);
@@ -41,10 +42,10 @@ public class Dispatcher {
                     this.doPatch(request);
                     break;
                 case DELETE:
-                    this.doDelete(request, response);
+                    this.doDelete(request);
                     break;
                 default: // Unexpected
-                    throw new RequestInvalidException("method error: " + request.getMethod());
+                    throw new RequestInvalidException(METHOD_ERROR_MSG + request.getMethod());
             }
         } catch (ArgumentNotValidException | RequestInvalidException exception) {
             response.setBody(String.format(ERROR_MESSAGE, exception.getMessage()));
@@ -67,15 +68,15 @@ public class Dispatcher {
         } else if (request.isEqualsPath(PlayApiController.PLAYS)) {
             response.setBody((this.playApiController.create((PlayDto) request.getBody())));
         } else {
-            throw new RequestInvalidException("method error: " + request.getMethod());
+            throw new RequestInvalidException(METHOD_ERROR_MSG + request.getMethod());
         }
     }
 
-    private void doPut(HttpRequest request, HttpResponse response) {
+    private void doPut(HttpRequest request) {
         if (request.isEqualsPath(PublisherApiController.PUBLISHERS + PublisherApiController.ID_ID)) {
             this.publisherApiController.update(request.getPath(1), (PublisherDto) request.getBody());
         }  else {
-            throw new RequestInvalidException("method error: " + request.getMethod() + ' ' + request.getPath());
+            throw new RequestInvalidException(METHOD_ERROR_MSG + request.getMethod() + ' ' + request.getPath());
         }
     }
 
@@ -92,12 +93,12 @@ public class Dispatcher {
             response.setBody(this.playApiController.findByName(request.getParams().get("nameplay")));
         }
         else{
-            throw new RequestInvalidException("method error: " + request.getMethod() + ' ' + request.getPath());
+            throw new RequestInvalidException(METHOD_ERROR_MSG + request.getMethod() + ' ' + request.getPath());
 
         }
     }
 
-    private void doDelete(HttpRequest request, HttpResponse response) {
+    private void doDelete(HttpRequest request) {
         if (request.isEqualsPath(PlayApiController.PLAYS + PlayApiController.ID_ID)){
             this.playApiController.delete(request.getPath(1));
         }

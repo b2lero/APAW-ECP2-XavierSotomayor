@@ -1,9 +1,8 @@
-package api.apiControllers;
+package api.apicontrollers;
 
-import api.businessController.PlayBusinessController;
+import api.businesscontrollers.PlayBusinessController;
 import api.dtos.PlayDto;
 import api.dtos.PlaylistDto;
-import api.entities.Play;
 import api.exceptions.ArgumentNotValidException;
 
 import java.util.List;

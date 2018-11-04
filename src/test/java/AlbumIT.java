@@ -1,13 +1,10 @@
-import api.apiControllers.AlbumApiController;
-import api.apiControllers.PlayApiController;
+import api.apicontrollers.AlbumApiController;
+import api.apicontrollers.PlayApiController;
 import api.daos.DaoFactory;
 import api.daos.memory.DaoMemoryFactory;
 import api.dtos.AlbumDto;
 import api.dtos.PlayDto;
-import api.entities.Album;
-import api.entities.Play;
 import api.entities.PlayInfo;
-import api.exceptions.NotFoundException;
 import http.*;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;

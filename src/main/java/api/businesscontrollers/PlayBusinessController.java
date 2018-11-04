@@ -1,4 +1,4 @@
-package api.businessController;
+package api.businesscontrollers;
 
 import api.daos.DaoFactory;
 import api.dtos.PlayDto;
