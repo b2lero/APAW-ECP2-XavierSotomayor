@@ -1,13 +1,10 @@
-import api.apiControllers.PlayApiController;
+import api.apicontrollers.PlayApiController;
 import api.daos.DaoFactory;
 import api.daos.memory.DaoMemoryFactory;
 import api.dtos.PlayDto;
 import api.dtos.PlaylistDto;
 import api.entities.PlayInfo;
-import http.Client;
-import http.HttpException;
-import http.HttpRequest;
-import http.HttpStatus;
+import http.*;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -71,6 +68,25 @@ public class PlayIT {
         HttpRequest request = HttpRequest.builder().path(PlayApiController.PLAYS).path(PlayApiController.ID_ID)
                 .expandPath(id).delete();
         new Client().submit(request);
+    }
+
+    @Test
+    void testFindByName(){
+        this.createPlay("name one", "one author 1", PlayInfo.HIP_HOP);
+        String nameid = this.createPlay("name two", "one author 2", PlayInfo.HIP_HOP);
+        HttpRequest request = HttpRequest.builder().path(PlayApiController.PLAYS).path(PlayApiController.SEARCH).param("nameplay", nameid).get();
+        List<PlaylistDto> playlistDtos = (List<PlaylistDto>) new Client().submit(request).getBody();
+
+        assertEquals(1, playlistDtos.size());
+    }
+
+    @Test
+    void testFindByNameNotFound(){
+        String id = this.createPlay("one name", "one author", PlayInfo.ROCK);
+        HttpRequest request = HttpRequest.builder().path(PlayApiController.PLAYS).path(PlayApiController.SEARCH).param("nameplay", id+2).get();
+        List<PlaylistDto> playlistDtos = (List<PlaylistDto>) new Client().submit(request).getBody();
+
+        assertTrue(playlistDtos.isEmpty());
     }
 
 }

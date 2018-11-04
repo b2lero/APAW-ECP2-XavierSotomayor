@@ -2,7 +2,6 @@ package api.dtos;
 
 import api.entities.Play;
 
-import java.time.LocalDate;
 import java.util.List;
 
 public class AlbumDto {

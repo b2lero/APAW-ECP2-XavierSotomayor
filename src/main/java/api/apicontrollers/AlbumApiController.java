@@ -1,6 +1,6 @@
-package api.apiControllers;
+package api.apicontrollers;
 
-import api.businessController.AlbumBusinessController;
+import api.businesscontrollers.AlbumBusinessController;
 import api.dtos.AlbumDto;
 import api.entities.Play;
 import api.exceptions.ArgumentNotValidException;

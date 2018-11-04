@@ -1,8 +1,7 @@
-package api.businessController;
+package api.businesscontrollers;
 
 import api.daos.DaoFactory;
 import api.dtos.AlbumDto;
-import api.dtos.PlayDto;
 import api.entities.Album;
 import api.entities.Play;
 import api.exceptions.NotFoundException;

@@ -1,4 +1,4 @@
-package api.businessController;
+package api.businesscontrollers;
 
 import api.daos.DaoFactory;
 import api.dtos.PlayDto;
@@ -28,5 +28,17 @@ public class PlayBusinessController {
         }
         return playListDtos;
     }
+
+    public List<PlaylistDto> findByName(String namePlayid){
+        List<Play> playlist = DaoFactory.getFactory().getPlayDao().findAll();
+        List<PlaylistDto>  playlistDtos = new ArrayList<>();
+        for (Play play : playlist){
+            if (play.getId().equals(namePlayid))
+                playlistDtos.add(new PlaylistDto(play));
+        }
+
+        return playlistDtos;
+    }
+
 
 }
