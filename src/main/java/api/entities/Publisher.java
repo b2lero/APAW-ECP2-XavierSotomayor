@@ -1,37 +1,50 @@
 package api.entities;
 
+import java.util.List;
+
 public class Publisher{
     private String id;
     private String name;
     private String label;
+    private List<Album> albumList;
 
-    public Publisher(String name, String label) {
+    public Publisher(String name, String label, List<Album> albumList) {
         this.name = name;
         this.label = label;
-    }
-
-    public String getLabel() {
-        return this.label;
-    }
-
-    public void setLabel(String label) {
-        this.label = label;
+        this.albumList = albumList;
     }
 
     public void setId(String id) {
         this.id = id;
     }
 
-    public String getId() {
-        return this.id;
+    public Publisher setName(String name) {
+        this.name = name;
+        return this;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setLabel(String label) {
+        this.label = label;
+    }
+
+    public void setAlbumList(List<Album> albumList) {
+        this.albumList = albumList;
+    }
+
+    public String getId() {
+        return id;
     }
 
     public String getName() {
-        return this.name;
+        return name;
+    }
+
+    public String getLabel() {
+        return label;
+    }
+
+    public List<Album> getAlbumList() {
+        return albumList;
     }
 
     @Override
@@ -40,6 +53,7 @@ public class Publisher{
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", label='" + label + '\'' +
+                ", albumList=" + albumList +
                 '}';
     }
 }

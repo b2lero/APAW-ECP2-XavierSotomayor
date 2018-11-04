@@ -1,6 +1,7 @@
 package api.entities;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class Album{
 
@@ -8,12 +9,14 @@ public class Album{
     private String name;
     private LocalDateTime date;
 
-    private Play[] playlist;
+    private List<Play> playlist;
 
-    public Album(String name, LocalDateTime date) {
+    public Album(String name, LocalDateTime date, List<Play> playList) {
         this.id = id;
         this.name = name;
         this.date = LocalDateTime.now();
+        this.playlist = playList;
+
     }
 
     public String getId() {
@@ -32,14 +35,6 @@ public class Album{
         this.name = name;
     }
 
-    public Play[] getPlaylist() {
-        return playlist;
-    }
-
-    public void setPlaylist(Play[] playlist) {
-        this.playlist = playlist;
-    }
-
     public LocalDateTime getDate() {
         return date;
     }
@@ -48,4 +43,21 @@ public class Album{
         this.date = date;
     }
 
+    public List<Play> getPlaylist() {
+        return playlist;
+    }
+
+    public void setPlaylist(List<Play> playlist) {
+        this.playlist = playlist;
+    }
+
+    @Override
+    public String toString() {
+        return "Album{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", date=" + date +
+                ", playlist=" + playlist +
+                '}';
+    }
 }

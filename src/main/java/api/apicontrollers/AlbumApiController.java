@@ -1,12 +1,19 @@
-package api.apiControllers;
+package api.apicontrollers;
 
-import api.businessController.AlbumBusinessController;
+import api.businesscontrollers.AlbumBusinessController;
 import api.dtos.AlbumDto;
+import api.entities.Play;
 import api.exceptions.ArgumentNotValidException;
+
+import java.util.List;
 
 public class AlbumApiController {
 
     public static final String ALBUMS = "/albums";
+
+    public static final String ID_ID = "/{id}";
+
+    public static final String PLAYS = "/plays";
 
     private AlbumBusinessController albumBusinessController =  new AlbumBusinessController();
 
@@ -15,6 +22,13 @@ public class AlbumApiController {
         this.validate(albumDto.getName(),"albumDto name");
         return this.albumBusinessController.create(albumDto);
     }
+
+    public void updatePlay(String albumId, List<Play> playList){
+        this.validate(albumId, "albumdto id");
+        this.validate(playList, "playlist");
+        this.albumBusinessController.updatePlay(albumId, playList);
+    }
+
 
     private void validate(Object property, String message) {
         if (property == null) {
