@@ -14,6 +14,8 @@ public class PlayApiController {
 
     public static final String ID_ID = "/{id}";
 
+    public static final String SEARCH = "/search";
+
     private PlayBusinessController playBusinessController = new PlayBusinessController();
 
     public String create(PlayDto playDto){
@@ -28,14 +30,19 @@ public class PlayApiController {
         this.playBusinessController.delete(id);
     }
 
+    public List<PlaylistDto> readAll(){
+        return playBusinessController.readAll();
+    }
+
+    public List<PlaylistDto> findByName(String namePlayid){
+        return playBusinessController.findByName(namePlayid);
+
+    }
+
     private void validate(Object property, String message) {
         if (property == null) {
             throw new ArgumentNotValidException(message + " is missing");
         }
-    }
-
-    public List<PlaylistDto> readAll(){
-        return playBusinessController.readAll();
     }
 
 }

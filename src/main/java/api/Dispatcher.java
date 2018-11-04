@@ -88,7 +88,10 @@ public class Dispatcher {
     private void doGet(HttpRequest request, HttpResponse response) {
         if (request.isEqualsPath(PlayApiController.PLAYS)){
             response.setBody(this.playApiController.readAll());
-        } else{
+        } else if(request.isEqualsPath(PlayApiController.PLAYS + PlayApiController.SEARCH)){
+            response.setBody(this.playApiController.findByName(request.getParams().get("nameplay")));
+        }
+        else{
             throw new RequestInvalidException("method error: " + request.getMethod() + ' ' + request.getPath());
 
         }
